@@ -27,7 +27,7 @@ char pstrlen(Pstring* pstr) : resturns the length of the pstring.
 
 Pstring* replaceChar(Pstring* pstr, char oldChar, char newChar) : replace each appearance of oldChar with newChar. Returns a pointer to the pstring.
 
-Pstring* pstrijcpy(Pstring* dst, Pstring* src, char i, char j) : copy the substing(i, j) of src to dst. If i or j are out of bounds(with first pstring lengtth or second pstring), prints invalid input. Returns a pointer to the first pstring.
+Pstring* pstrijcpy(Pstring* dst, Pstring* src, char i, char j) : copy the subsrting(i, j) of src to dst. If i or j are out of bounds(with first pstring length or second pstring), prints invalid input. Returns a pointer to the first pstring.
 
 Pstring* swapCase(Pstring* pstr): swaps each lower case letter to upper case and vice versa. Returns a pointer to the pstring.
 
