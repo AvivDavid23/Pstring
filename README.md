@@ -5,7 +5,7 @@ Pstring is a representation of a string with its length on the stack frame of th
 In main function. I can two Pstrings. For each one I scan his length first and than the string itself. Afterwards, I take the first byte of the length and put it after the string on the stack frame.
 
 After the scanning, I scan an integer, which will be a choice for the switch-case in func_select.s. Main calls run_func
-with the coice as a int, and two pointers to the pstrings
+with the choice as a integer, and two pointers to the pstrings
 
 # func_select.s:
 In function run_func, there is a swtich-case where each case(50 - 54) calls a different function from pstring.s and works on the pstrings.
