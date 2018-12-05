@@ -18,17 +18,17 @@ pstrln:
 replaceChar:
 	pushq	%rbp
 	movq	%rsp, %rbp
-	movq	%rdi, %rax # saving pointer to string
-	movzbl	(%rdi), %r8d # r8d will have the size of the string
-	movl	$0, %ecx # ecx will be a 'counter'
-	inc		%rdi	# pointer inc
-	dec		%r8d
+	movq	%rdi, %rax 	# saving pointer to string
+	movzbl	(%rdi), %r8d	# r8d will have the size of the string
+	movl	$0, %ecx 	# ecx will be a 'counter'
+	inc	%rdi		# pointer inc
+	dec	%r8d
 	.WHILE:
-	  cmpb	%sil, (%rdi) # check if char == oldChar
-	  je  .TRUE 	# if equal, jmp to true
+	  cmpb	%sil, (%rdi) 	# check if char == oldChar
+	  je  .TRUE 		# if equal, jmp to true
 	  jmp .FALSE
 	 .TRUE:
-	   movb	%dl, (%rdi) # replace to newChar
+	   movb	%dl, (%rdi) 	# replace to newChar
 	 .FALSE:
 	   inc	%rdi
 	   inc	%ecx
@@ -41,9 +41,9 @@ pstrijcpy:
 	pushq	%rbp
 	movq	%rsp, %rbp
 	pushq	%r15
-	movq	%rdi, %r15 # saving pointer to string
-	movb	(%rdi), %r8b # saving dst length
-	movb	(%rsi), %r9b # saving src length
+	movq	%rdi, %r15 	# saving pointer to string
+	movb	(%rdi), %r8b 	# saving dst length
+	movb	(%rsi), %r9b 	# saving src length
 	dec		%r8b
 	dec		%r9b
 	# INPUT CHECK:
@@ -69,9 +69,9 @@ pstrijcpy:
 	  leave
 	  ret
 	.SEC:
-		inc	%rdi	# skip length byte
-	  inc	%rsi	# skip length byte
-	  movb	$0, %r10b # 'counter'
+	  inc	%rdi		# skip length byte
+	  inc	%rsi		# skip length byte
+	  movb	$0, %r10b 	# 'counter'
 	  cmpb	%dl, %r10b
 	  jl  .WHILE1
 	  jmp .WHILE2
@@ -98,12 +98,12 @@ pstrijcpy:
 swapCase:
 	pushq	%rbp
 	movq	%rsp, %rbp
-	movq	%rdi, %rax # saving pointer to string
-	movzbl	(%rdi), %r8d # length
-	dec		%r8d
-	inc		%rdi
-	movl	$0, %r9d # 'counter'
-	.while:		# while counter <= length -1
+	movq	%rdi, %rax	# saving pointer to string
+	movzbl	(%rdi), %r8d 	# length
+	dec	%r8d
+	inc	%rdi
+	movl	$0, %r9d 	# 'counter'
+	.while:	# while counter <= length -1
 	  # checking if char is a letter, by ASCII value
 	  cmpb	$122, (%rdi)
 	  ja .pass
@@ -113,26 +113,26 @@ swapCase:
 	  jl .capital
 	  cmpb	$96, (%rdi)
 	  ja .small
-	  .capital:		# capital, add 32
-	    addb	$32, (%rdi)
-		  jmp .pass
-	  .small:		# small, dec 32
-	    subb	$32, (%rdi)
+	  .capital: # capital, add 32
+	    addb    $32, (%rdi)
+	    jmp .pass
+	  .small:   # small, dec 32
+	    subb    $32, (%rdi)
 	  .pass:
-	  	inc		%r9d
-			inc		%rdi
-	    cmpl	%r8d, %r9d
+	    inc	    %r9d
+	    inc	    %rdi
+	    cmpl    %r8d, %r9d
 	    jle .while
 	leave
 	ret
 
 pstrijcmp:
-	pushq		%rbp
-	movq		%rsp, %rbp
-	movb	(%rdi), %r8b # saving dst length
-	movb	(%rsi), %r9b # saving src length
-	dec			%r8b
-	dec			%r9b
+	pushq	%rbp
+	movq	%rsp, %rbp
+	movb	(%rdi), %r8b 	# saving dst length
+	movb	(%rsi), %r9b 	# saving src length
+	dec	%r8b
+	dec	%r9b
 	#INPUT CHECK:
 	cmpb	$0, %dl	# i < 0
 	jl .ERROR
@@ -155,13 +155,13 @@ pstrijcmp:
 	  leave
 	  ret
 	.SECS:
-		inc	%rdi	# skip length byte
-	  inc	%rsi	# skip length byte
-	  movb	$0, %r10b # 'counter'
+	  inc	%rdi		# skip length byte
+	  inc	%rsi		# skip length byte
+	  movb	$0, %r10b 	# 'counter'
 	  cmpb	%dl, %r10b
 	  jl .WHILEA
 	  jmp .WHILEB
-	 .WHILEA:	# increase counter until counter == i
+	 .WHILEA: # increase counter until counter == i
 	   inc	%r10b
 	   inc	%rdi
 	   inc	%rsi
@@ -175,18 +175,18 @@ pstrijcmp:
 	   ja .Bigger
 	   jmp .PASS
 	   .SMALLER:
-	     movl	$-1, %eax
+	     movl    $-1, %eax
 	     jmp .DONE
 	   .Bigger:
-	     movl	$1, %eax
+	     movl    $1, %eax
 	     jmp .DONE
 	   .PASS: 
-	     inc	%r10b
-	     inc	%rdi
-	     inc	%rsi
-	     cmpb	%cl, %r10b
+	     inc    %r10b
+	     inc    %rdi
+	     inc    %rsi
+	     cmpb   %cl, %r10b
 	     jle .WHILEB
-	     movl	$0, %eax
+	     movl   $0, %eax
 	  .DONE:
 	    leave
 	    ret
