@@ -10,9 +10,13 @@ with the coice as a int, and two pointers to the pstrings
 In function run_func, there is a swtich-case where each case(50 - 54) calls a different function from pstring.s and works on the pstrings.
 
 case 50 - calls pstrln on each pstring and prints the string with his length.
+
 case 51 - scans two chars, calling replaceChar on each pstring and prints the chars with the updated pstrings.
+
 case 52 - scans two integers, calling pstrijcpy, and prints each pstring with his length.
+
 case 53 - calls swapCase on each pstring and prints the updated string.
+
 case 54 - scans two integers, calls pstrijcmp, and prints the comparison result.
 
 # psring.s:
