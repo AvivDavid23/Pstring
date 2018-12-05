@@ -1,7 +1,7 @@
 # Pstring
 Pstring is a representation of a string with its length on the stack frame of the main function.
 
-# Main Function:
+# main.s:
 In main function. I can two Pstrings. For each one I scan his length first and than the string itself. Afterwards, I take the first byte of the length and put it after the string on the stack frame.
 
 After the scanning, I scan an integer, which will be a choice for the switch-case in func_select.s. Main calls run_func
