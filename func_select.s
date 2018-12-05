@@ -1,8 +1,8 @@
 	.section .rodata
-	input_err:  	.string "invalid option!\n" # for wrong input
+	input_err:  		.string "invalid option!\n" # for wrong input
 	func_50:		.string "first pstring length: %d, second pstring length: %d\n"
 	func_51:		.string "old char: %c, new char: %c, first string: %s, second string: %s\n"
-	f51_sc:     	.string "%c %c"
+	f51_sc:     		.string "%c %c"
 	dummy:			.string	"%c"
 	func_52:		.string "length: %d, string: %s\n"
 	f52_sc:			.string "%d"
@@ -11,7 +11,7 @@
 	f54_sc:			.string "%d"
 
 	.align 8
-   .SWITCH:		# jump table
+   .SWITCH:	# jump table
    	.quad .L50
 	.quad .L51
 	.quad .L52
@@ -33,9 +33,9 @@ run_func:
 	  movq		%rsi, %rdi 
 	  call  	pstrln 
 	  movzbl	%al, %r12d	# first length
-	  popq	    %rdi
+	  popq	   	 %rdi
 	  call 		pstrln 
-	  movzbl    %al, %r13d	# second length
+	  movzbl   	 %al, %r13d	# second length
 	  movq		$func_50, %rdi
 	  movl		%r12d, %esi
 	  movl		%r13d, %edx
@@ -78,9 +78,9 @@ run_func:
 		movb	1(%rsp), %sil
 		movb	(%rsp), %dl
 		movq	%r12, %rcx
-		inc		%rcx	# skip length byte
+		inc	%rcx		# skip length byte
 		movq	%r13, %r8
-		inc		%r8		# skip length byte
+		inc	%r8		# skip length byte
 		movq	$0, %rax
 		movq	$func_51, %rdi
 		call	printf
@@ -90,24 +90,24 @@ run_func:
 	  jmp .DONE
 	 
 	.L52:
-		pushq	%rsi	# save first ptr
-		pushq	%rdx	# save second ptr
+		pushq	%rsi		# save first ptr
+		pushq	%rdx		# save second ptr
 	  	subq	$8, %rsp
 		leaq	4(%rsp), %rsi
 		movq	$f52_sc, %rdi
 		movq	$0, %rax
-		call 	scanf	# scan first int
+		call 	scanf		# scan first int
 		leaq	(%rsp), %rsi
 		movq	$f52_sc, %rdi
 		movq	$0, %rax
-		call 	scanf	# scan second int
+		call 	scanf		# scan second int
 		movb	4(%rsp), %dl
 		movb	(%rsp), %cl
 		movq	8(%rsp), %rsi	# second ptr
 		movq	16(%rsp),%rdi	# first ptr
 		call 	pstrijcpy
 		movq	%rax, %rdx
-		inc		%rdx	# skip length byte
+		inc	%rdx		# skip length byte
 		movzbl	(%rax), %esi	# get length
 		movq	$func_52, %rdi
 		movq	$0, %rax
@@ -115,7 +115,7 @@ run_func:
 		movq	8(%rsp), %rax	# rax will have second str ptr
 		movzbl	(%rax), %esi	# get length
 		movq	%rax, %rdx
-		inc		%rdx	# skip length byte
+		inc	%rdx		# skip length byte
 		movq	$func_52, %rdi
 		movq	$0, %rax
 		call	printf
@@ -127,7 +127,7 @@ run_func:
 		pushq	%r14
 		pushq	%r15
 		movq	%rsi, %r12	# temp for first pointer
-		movq	%rdx, %r13  # temp for second pointer
+		movq	%rdx, %r13      # temp for second pointer
 		movq	%rsi, %rdi
 		call	swapCase
 
@@ -138,16 +138,16 @@ run_func:
 		movq	%r13, %rdi
 		call	swapCase
 
-		pushq	%rax # save second pointer
+		pushq	%rax 		# save second pointer
 		movq	%r13, %rdi
 		call	pstrln
 		movzbl	%al, %r15d	# save second length
 
-		popq	%r13	# second pointer
-		inc		%r13	# skip length byte
-		movl  	%r14d, %esi # first length
-		popq	%rdx	# first pointer
-		inc		%rdx  # skip length byte
+		popq	%r13		# second pointer
+		inc	%r13		# skip length byte
+		movl  	%r14d, %esi 	# first length
+		popq	%rdx		# first pointer
+		inc	%rdx  		# skip length byte
 		movq	$0, %rax
 		movq	$func_53, %rdi
 		call 	printf
@@ -165,17 +165,17 @@ run_func:
 	  	jmp .DONE
 	 
 	.L54:
-		pushq	%rsi	# save first ptr
-		pushq	%rdx	# save second ptr
+		pushq	%rsi		# save first ptr
+		pushq	%rdx		# save second ptr
 		subq	$8, %rsp
 		leaq	4(%rsp), %rsi
 		movq	$f54_sc, %rdi
 		movq	$0, %rax
-		call 	scanf	# scan first int
+		call 	scanf		# scan first int
 		leaq	(%rsp), %rsi
 		movq	$f54_sc, %rdi
 		movq	$0, %rax
-		call 	scanf	# scan second int
+		call 	scanf		# scan second int
 		movb	4(%rsp), %dl
 		movb	(%rsp), %cl
 		movq	8(%rsp), %rsi
